@@ -174,7 +174,8 @@
 
             <p class="code">
             (<br>
-            SynthDef("sine", { arg freq=800; //set argument freq to 800<br>
+            SynthDef("sine", //name of the synth = "sine"
+                { arg freq=800; //set argument freq to 800<br>
                 var osc; //define a variable osc<br>
                 osc = SinOsc.ar(freq, 0, 0.1); // set variable osc to 800 Hz sine oscillator<br>
                 Out.ar(0, osc); // send output (osc) to audio bus zero (0).<br>
@@ -199,7 +200,7 @@
             </p>
 
             <p>
-            Notice that our if we send our output to bus 7 it should arrive in your DAW.
+            Now, if we send our output to bus 7 it should arrive in your DAW.
 
             </p>
 
@@ -208,7 +209,7 @@
                 SynthDef("sine", { arg freq=800; //set argument freq to 800<br>
                 var osc; //define a variable osc<br>
                 osc = SinOsc.ar(freq, 0, 0.1); // set variable osc to 800 Hz sine oscillator<br>
-                Out.ar(7, osc); // send output (osc) to audio bus zero (0).<br>
+                Out.ar(7, osc); // send output (osc) to audio bus zero (7).<br>
                 }).add)<br>
 
 
