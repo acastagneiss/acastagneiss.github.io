@@ -35,6 +35,7 @@ body {
 
     font-family: 'Cutive Mono', monospace;
     font-size: 15px;
+    margin-right: 20%;
 
 
 }
@@ -71,6 +72,10 @@ img {
 
         width: 100%;
 
+    }
+
+    body {
+        margin-right: 10%;
     }
 }
 
