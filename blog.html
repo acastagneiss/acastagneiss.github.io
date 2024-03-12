@@ -71,7 +71,7 @@
                 Posts:
             </p>
             </p>
-
+            <a href="#post3">13-03-2024 | functions in SC</a><br>
             <a href="#post2">04-12-2023 | setting up SuperCollider (2)</a><br>
             <a href="#post1"> 05-10-2023 | Setting up SuperCollider (1)</a>
 
@@ -113,12 +113,130 @@
             -->
 
 
+            <p class="date">13-03-2024</p>
+
+            <div id="post3">
+            <h3 class="title">
+             <br>
+              Functions in SuperCollider<br>
+              ---------------------------
+              <br>
+            </h3>
+
+            <p> 
+            In this post I want to have a brief look at functions and how you can use them in SC. Functions are a central concept in computer programming. A function can be defined as a callable unit that has a well-defined behavior and can be invoked by other software units to exhibit that behavior. Usually this means that a value goes into the function, a behavior or series of behaviors is executed inside the function and a new value is returned. For instance if we want to write a function that subtracts half of a given number. We would have to make the following calculation:
+ </p>
+
+ <p class="code">
+
+y = x -  x/2 
+
+<p> 
+    <p> 
+In SuperCollider we can write this as a reusable function as follows:
+</p>
+
+<p class="code">
+a = {arg x; x = x -  (x/2)}
+</p>
+
+<p> 
+We now have a function stored in a variable (a) that takes as an argument x and performs the necessary calculation. This means that we can easily perform our calculation for different numbers. 
+We can use the .value method to evaluate our function, this method can also be written as value(a,4). For example:
+</p>
+
+<p class="code">
+a.value(4)
+a.value(8)
+</p>
+
+<p> 
+<br> 
+Some things to note: 
+<br> 
+<ul style="list-style-type: square; margin-left: 5%"> 
+<li> 
+In SC functions are surrounded with brackets: {} </li>
+<li> 
+We store a function in a variable, in this case we used the letter a. In SC all the letters a-z are reserved as variables (remember that the server is already stored in variable s so that one is off-limits). 
+These can be used anywhere in the program and are consider global variables. If you want to create your own variable you can do this using the tilde: eg: ~myOwnVariable. 
+These are refered to as environment variables and can also be used anywhere in the program.
+</li>
+<li> Lastly the order of operations in SC is executed from left to right in all cases, there is no operator precedence. So we need the parentheses to get the correct result in our case.
+</li>
+</ul>
+<p> 
+Now how can we use this to make sounds? 
+
+
+In the previous post we wrote the following code to send our SinOsc to bus 7.
+
+</p>
+<p class="code"> 
+
+(
+b = {var osc;
+	osc = SinOsc.ar(220);
+	Out.ar(7,osc)})
+</p>
+
+<p> 
+Now we can see that it is a function. Similarly to our previous example lets add a variable that we can use to modify our sound and send it to bus 0 an 1. 
+</p>
+
+<p class="code">
+(b = {arg freq; <br> 
+	var osc; <br> 
+	osc = SinOsc.ar(freq); <br> 
+	Out.ar([0,1],osc)}) <br> </p>
+
+<p> 
+Now we can use our function to play this sine wave at different frequencies:
+</p>
+
+<p class="code">
+b.play(args: ["freq", 110]) <br> 
+b.play(args: ["freq", 220]) <br> 
+b.play(args: ["freq", 240.43]) <br> 
+<p> 
+
+    <p> 
+To make it a bit more interesting lets add another variable called <em> control</em> which outputs a control rate signal. This signal can then 
+be used to modify the amplitude of the signal.
+</p>
+
+<p class="code"> 
+
+(
+b = {arg freq; <br> 
+	var control; <br> 
+	var osc; <br> 
+	control = SinOsc.kr(4); <br> 
+	osc = SinOsc.ar(freq, 0, control); <br> 
+	Out.ar([0,1],osc)} <br> 
+)</p>
+
+<p> 
+And run it with a few different frequencies:
+</p>
+
+<p class="code"> 
+
+b.play(args: ["freq", 140.23]) <br> 
+b.play(args: ["freq", 110])  <br> 
+b.play(args: ["freq", 220]) <br> 
+b.play(args: ["freq", 240.43]) <br> 
+<p> 
+</div> 
+
             <p class="date">04-12-2023</p>
 
             <div id="post2">
             <h3 class="title">
              <br>
-                Setting up SuperCollider (2)<br>
+                Setting up SuperCollider (2)<br> 
+                ---------------------------
+                <br>
               <br>
             </h3>
 
@@ -185,57 +303,25 @@
 
             <p>
 
-            You can see that you can either send audio rate (ar) or control rate (kr).
-                In this case we want to send out our sine wave audio rate.
-                To do this we will make a SynthDef. A SynthDef is way to create a
-                server synth definition that we can reuse (more on SynthDefs in the next post).
+            You can see that you can either send audio rate (ar) or control rate (kr). 
+                In this case we want to send out our sine wave audio rate. We can do this by creating a function (more on functions later) for our
+                oscillator and setting our bus to 6 and 7 with an array.  
 
             </p>
 
             <p class="code">
             (<br>
-            SynthDef("sine", //name of the synth = "sine"
-                { arg freq=800; //set argument freq to 800<br>
-                var osc; //define a variable osc<br>
-                osc = SinOsc.ar(freq, 0, 0.1); // set variable osc to 800 Hz sine oscillator<br>
-                Out.ar(0, osc); // send output (osc) to audio bus zero (0).<br>
-                }).add)<br>
+            (
+                b = {var osc; <br> 
+                    osc = SinOsc.ar(220); <br> 
+                    Out.ar([6,7],osc)})<br>
 
             </p>
 
-            <p>
-            Now we  can play our SynthDef by assigning it to a variable and calling it by name, in this case “sine”.
+            <p> 
+
+            Notice that we are setting it to 6 and 7 but it enters your DAW in input 7/8 because in SC we start counting from 0 instead of 1. 
             </p>
-
-            <p class="code">
-            d = Synth("sine")
-            </p>
-
-            <p>
-            we can stop the sound by freeing it and reassigning the variable.
-            </p>
-
-            <p class="code">
-            d = d.free
-            </p>
-
-            <p>
-            Now, if we send our output to bus 7 it should arrive in your DAW.
-
-            </p>
-
-            <p class="code">
-                (<br>
-                SynthDef("sine", { arg freq=800; //set argument freq to 800<br>
-                var osc; //define a variable osc<br>
-                osc = SinOsc.ar(freq, 0, 0.1); // set variable osc to 800 Hz sine oscillator<br>
-                Out.ar(7, osc); // send output (osc) to audio bus zero (7).<br>
-                }).add)<br>
-
-
-            </p>
-<br>
-            <br>
 
  </div>
 
@@ -247,6 +333,8 @@
 <h3 class="title">
    <br>
 Setting up SuperCollider (1)<br>
+---------------------------
+
     <br>
 </h3>
 
