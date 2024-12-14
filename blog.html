@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Acasta Gneiss | Blog </title>
@@ -7,80 +8,75 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <style>
+        .code {
+            background-color: lightgrey;
+            color: blue;
+        }
 
-<style>
+        .date {
+            background-color: darkblue;
+            color: white;
+        }
 
-    .code {
-        background-color: lightgrey;
-        color: blue;
-    }
-
-    .date {
-        background-color: darkblue;
-        color: white;
-    }
-
-    .title {
-        /*font-weight: bold; */
-    }
-
-
-
-
-
-</style>
+        .title {
+            /*font-weight: bold; */
+        }
+    </style>
 
 </head>
 
 <body>
 
 
-<div class="flex-container">
-    <div style="flex-grow: 8"></div>
-</div>
-
-
-<div class="flex-container">
-    <div style="flex-grow: 1">
-        <p> <a href="index.html"> about</a> </p>
-        <p> <a href="blog.html">  supercollider</a> </p>
-        <p> <a href="work.html">  visual</a> </p>
-
+    <div class="flex-container">
+        <div style="flex-grow: 8"></div>
     </div>
-</div>
+
+
+    <div class="flex-container">
+        <div style="flex-grow: 1">
+            <p> <a href="index.html"> about</a> </p>
+            <p> <a href="blog.html"> supercollider</a> </p>
+            <p> <a href="work.html"> visual</a> </p>
+
+        </div>
+    </div>
 
 
 
-        <div style="flex-grow: 8" class="margin-left">
+    <div style="flex-grow: 8" class="margin-left">
 
-<p> This page documents my use of the environment and programming language SuperCollider.
-    It will focus on practical examples that can help you integrate SuperCollider
-    in your setup as well as reflections on sound synthesis and the basics of programming.
-    Most of this will be written for MacOS which I currently use.
-    If you want to get started with SuperCollider I recommend
-    that you watch the videos of <a href="https://www.youtube.com/@elifieldsteel"> Eli Fieldsteel </a> or have a look at the book <a href="https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf"> A gentle introduction to SuperCollider </a>
-    by Bruno Ruviaro.
-    </p>
+        <p> This page documents my use of the environment and programming language SuperCollider.
+            It will focus on practical examples that can help you integrate SuperCollider
+            in your setup as well as reflections on sound synthesis and the basics of programming.
+            Most of this will be written for MacOS which I currently use.
+            If you want to get started with SuperCollider I recommend
+            that you watch the videos of <a href="https://www.youtube.com/@elifieldsteel"> Eli Fieldsteel </a> or have a
+            look at the book <a
+                href="https://ccrma.stanford.edu/~ruviaro/texts/A_Gentle_Introduction_To_SuperCollider.pdf"> A gentle
+                introduction to SuperCollider </a>
+            by Bruno Ruviaro.
+        </p>
 
-            <br>
-            <br>
-            <p class="date">
-                Posts:
-            </p>
-            </p>
-            <a href="#post3">13-03-2024 | functions in SC</a><br>
-            <a href="#post2">04-12-2023 | setting up SuperCollider (2)</a><br>
-            <a href="#post1"> 05-10-2023 | Setting up SuperCollider (1)</a>
+        <br>
+        <br>
+        <p class="date">
+            Posts:
+        </p>
+        </p>        
+        <a href="#post5">04-12-2023 | Control Structures</a><br>
+        <a href="#post4"> 05-10-2023 | SynthDef Basics</a> <br> 
+        <a href="#post3">13-03-2024 | functions in SC</a><br>
+        <a href="#post2">04-12-2023 | setting up SuperCollider (2)</a><br>
+        <a href="#post1"> 05-10-2023 | Setting up SuperCollider (1)</a>
 
-            <p>
-            </p>
+        <p>
+        </p>
 
 
 
-            <!--    <p class="date">21-09-2023</p>
+        <!--    <p class="date">21-09-2023</p>
 
     <p class="title">
         -------------------------------------------------------------------------------<br>
@@ -96,7 +92,7 @@
 
     -->
 
-<!--
+        <!--
             <p class="date">05-12-2023</p>
 
                 <p class="title">
@@ -113,165 +109,425 @@
             -->
 
 
-            <p class="date">13-03-2024</p>
+        <p class="date">24-07-2024</p>
 
-            <div id="post3">
+        <div id="post5">
             <h3 class="title">
-             <br>
-              Functions in SuperCollider<br>
-              ---------------------------
-              <br>
-            </h3>
-
-            <p> 
-            In this post I want to have a brief look at functions and how you can use them in SC. Functions are a central concept in computer programming. A function can be defined as a callable unit that has a well-defined behavior and can be invoked by other software units to exhibit that behavior. Usually this means that a value goes into the function, a behavior or series of behaviors is executed inside the function and a new value is returned. For instance if we want to write a function that subtracts half of a given number. We would have to make the following calculation:
- </p>
-
- <p class="code">
-
-y = x -  x/2 
-
-<p> 
-    <p> 
-In SuperCollider we can write this as a reusable function as follows:
-</p>
-
-<p class="code">
-a = {arg x; x = x -  (x/2)}
-</p>
-
-<p> 
-We now have a function stored in a variable (a) that takes as an argument x and performs the necessary calculation. This means that we can easily perform our calculation for different numbers. 
-We can use the .value method to evaluate our function, this method can also be written as value(a,4). For example:
-</p>
-
-<p class="code">
-a.value(4)
-a.value(8)
-</p>
-
-<p> 
-<br> 
-Some things to note: 
-<br> 
-<ul style="list-style-type: square; margin-left: 5%"> 
-<li> 
-In SC functions are surrounded with brackets: {} </li>
-<li> 
-We store a function in a variable, in this case we used the letter a. In SC all the letters a-z are reserved as variables (remember that the server is already stored in variable s so that one is off-limits). 
-These can be used anywhere in the program and are consider global variables. If you want to create your own variable you can do this using the tilde: eg: ~myOwnVariable. 
-These are refered to as environment variables and can also be used anywhere in the program.
-</li>
-<li> Lastly the order of operations in SC is executed from left to right in all cases, there is no operator precedence. So we need the parentheses to get the correct result in our case.
-</li>
-</ul>
-<p> 
-Now how can we use this to make sounds? 
-
-
-In the previous post we wrote the following code to send our SinOsc to bus 7.
-
-</p>
-<p class="code"> 
-
-(
-b = {var osc;
-	osc = SinOsc.ar(220);
-	Out.ar(7,osc)})
-</p>
-
-<p> 
-Now we can see that it is a function. Similarly to our previous example lets add a variable that we can use to modify our sound and send it to bus 0 an 1. 
-</p>
-
-<p class="code">
-(b = {arg freq; <br> 
-	var osc; <br> 
-	osc = SinOsc.ar(freq); <br> 
-	Out.ar([0,1],osc)}) <br> </p>
-
-<p> 
-Now we can use our function to play this sine wave at different frequencies:
-</p>
-
-<p class="code">
-b.play(args: ["freq", 110]) <br> 
-b.play(args: ["freq", 220]) <br> 
-b.play(args: ["freq", 240.43]) <br> 
-<p> 
-
-    <p> 
-To make it a bit more interesting lets add another variable called <em> control</em> which outputs a control rate signal. This signal can then 
-be used to modify the amplitude of the signal.
-</p>
-
-<p class="code"> 
-
-(
-b = {arg freq; <br> 
-	var control; <br> 
-	var osc; <br> 
-	control = SinOsc.kr(4); <br> 
-	osc = SinOsc.ar(freq, 0, control); <br> 
-	Out.ar([0,1],osc)} <br> 
-)</p>
-
-<p> 
-And run it with a few different frequencies:
-</p>
-
-<p class="code"> 
-
-b.play(args: ["freq", 140.23]) <br> 
-b.play(args: ["freq", 110])  <br> 
-b.play(args: ["freq", 220]) <br> 
-b.play(args: ["freq", 240.43]) <br> 
-<p> 
-</div> 
-
-            <p class="date">04-12-2023</p>
-
-            <div id="post2">
-            <h3 class="title">
-             <br>
-                Setting up SuperCollider (2)<br> 
+                <br>
+                Control Structures<br>
                 ---------------------------
                 <br>
-              <br>
             </h3>
 
+            <p>
+                Control structures are the building blocks of programming languages and allow us "control" when our code is exectuded based on certain conditions. In SuperCollider a number of these statements are available. In this post four 
+             basic control structures will be discussed. Lastly I will demonstrate how you can use them to control a SynthDef that we created in the previous post.
+            <p>
 
-    <p>         If you want to use SuperCollider it might be interesting to incorporate
-        external instruments or use send/return effects. To do this you will need an external audio interface.
-        I’m using the Native Instruments Komplete Audio 6 MK2.
-        To see which output devices are available for SuperCollider run the following code:
+            <ol>
+                <li>
+                 <b>    IF </b> 
 
-    </p>
+                    <p> 
 
-<p class="code">
-            ServerOptions.outDevices; // output devices
+                    The if-statement allows us to take an action based on a condition being either true or false (also known as a boolean). For example if a value is greater than 5 print “it’s greater than 5!” and if it is
+                    less than 5 print “it’s less than 5”.
+</p>
+<p> 
+                    In the SuperCollider we can write this as follows:
 </p>
 
+<p class="code">
+                    if (condition) {True} {False}
+                </p>
+
+                <p> For Example </p>
+
+                <p class="code">
+                    if(x > 5) {“it’s greater than 5”.postln} {“it’s less than 5”.postln}
+                </p>
+                </li>
+                <li>
+                WHILE
+
+                <p> 
+                    The while-statement allows us to take a certain action while a condition is True. For instance while
+                    a value is less than 5: add 1 to that value.
+</p>
+<p> 
+                    In the SuperCollider we can write this as follows:
+</p>
+<p class="code">
+                    while {condition} {do this}
+</p>
+<p> 
+                    for example:
+</p>
+<p class="code"> 
+                    i=0
+                    while {I < 5} { I=I + 1}; 
+</p> </li>
+                <li>
+                    <b> FOR </b>
+
+                    <p> 
+
+                    another way we can control the execution of our program in SuperCollider is a forBy loop. This
+                    statement allows us to iterate over an integer series (for) with a variable step size (by). Each
+                    iteration evaluation the numeric value is passed to a function as an argument
+</p>
+
+<p> 
+                    WE use the following syntax:
+</p>
+
+<p class="code">
+                    forBy {startValue, endValue, stepSize } { do something Value }
+</p>
+<p> 
+                    For example:
+</p>
+<p class="code">
+                    forBy {0, 10, 2} { arg I; I.postln }
+</p>
+<p> 
+                    (will print values 0,2,4,6,8,10)
+</p>
+
+                </li>
+                <li>
+                    <b> DO </b>
+
+                    <p> 
+                    We can use do to iterate over a collection. A collection can also be an integer, calling the
+                    function on each iteration with the numeric value as argument.
+</p>
+
+<p> 
+
+                    The syntax is as follows:
+</p>
+<p class="code"> 
+                    collection.do { do this }
+</p>
+<p> 
+                    For Example
+
+                    </p>
+
+                    <p class="code">
+                    5.do {arg I; I.postln);
+                    </p>
+                    <p>  
+                    If we want to execute a function indefinetely we can do this as follows
+<p> 
+    <p class="code"> 
+
+                    inf.do { I.postln)
+</p>
+                </li>
+
+            </ol> 
+
+                <p>
+                    Now lets try to use these control structures to make sound. Lets first create our synthesizer using
+                    synthDef
+                </p>
+                <p class="code">
+                    (
+                    SynthDef(\mySynth, {
+                    arg freq;
+                    var amp = 0.5; // set the amplitude
+                    var asdr = EnvGen.kr(Env.adsr(0.5, 0, 0, 0.5, 1), doneAction: 2); //
+                    var osc = SinOsc.ar(freq, 0, amp * asdr); //apply asdr by multiplying it with the amplitude
+                    Out.ar([0,1], osc);
+                    }).add;
+                    )
+                <p>
+
+                <p>
+                    I’ve added a simple envelope so that we can clear when the sound start and ends. Now we can use the
+                    do statement to trigger our Synth 5 times...but there is a problem, if we just write the following
+                    statement our loop is executed in such rapid succesion that we are unable to distinguish the
+                    different iterations.
+                </p>
+
+                <p class="code">
+                    5.do {
+                    Synth(\mySynth, [\freq, 440]);
+                    }
+                </p>
+
+                <p>
+                    We can use the wait method to wait 1 second between iterations. To do this we have to embed our do
+                    statement inside a routine as follows:
+                </p>
+
+                <p class="code">
+                    Routine({
+                    5.do {
+                    Synth(\mySynth, [\freq, 440]);
+                    1.wait; }
+                    }).play;
+                </p>
+
+
+
+        </div>
+
+
+
+
+        <!-- new post -->
+
+
+        <p class="date">24-07-2024</p>
+
+        <div id="post4">
+            <h3 class="title">
+                <br>
+                SynthDef: Basics<br>
+                ---------------------------
+                <br>
+            </h3>
+
             <p>
-            Based on this information you can set one of these as the default device. The previous post
-                discussed routing your audio internally into your DAW using software such as Soundflower. Now we
-                are going to combine this with our external audio interface to make an make aggregate device.
-                For MacOs users this is pretty straightforward (Windows user can try using <a href="https://asio4all.org/">ASIO4ALL</a>)
+                In the previous post we created a function that we stored in a variable b. </p>
+
+
+
+            <p class="code">
+
+                ( b = {arg freq; <br>
+                var control; <br>
+                var osc; <br>
+                control = SinOsc.kr(2); <br>
+                osc = SinOsc.ar(freq, 0, control); <br>
+                Out.ar([0,1],osc)} <br>
+                )
+
             </p>
 
             <p>
-            Once you’ve set up the aggregate device you want to run the above command again,
+
+                The function had one argument freq that allowed us to set the frequency of the oscillator. We also
+                declared two variables : control, a control-rate (kr) oscillator to modulate the amplitude of our
+                signal, and osc, an audio oscillator that generates a using SinOsc operating at audioratio.
+            </p>
+
+            <p>
+                We can now rewrite this function as a synth definition or SynthDef. As the name suggest this is a
+                reusable client side representation of a synthesizer that can be created and controlled in a more
+                efficient way.
+            </p>
+
+            <p class="code">
+                (
+                SynthDef(\mySynth, { //name our Synth so we can call it later <br>
+                arg freq; <br>
+                var control, osc; <br>
+                control = SinOsc.kr(2); <br>
+                osc = SinOsc.ar(freq, 0, control); <br>
+                Out.ar([0,1], osc); <br>
+                }).add; // we “add” the synth to memory <br>
+                ) <br>
+            </p>
+
+            <p>
+                We can now store the synthesizer as a synth def with the name mySynth so that it can be instatiated. We
+                create an instance of our synthesizer as follows:
+            </p>
+
+            <p class="code"> </p>
+            Synth(\mySynth, [\freq, 440]);
+            <p>
+
+            <p>
+                We can make multiple instances of the synth with different parameteres.
+            </p>
+
+            <p class="code">
+                Synth(\mySynth, [\freq, 440]); <br>
+                Synth(\mySynth, [\freq, 220]); <br>
+            </p>
+
+        </div>
+
+
+        <!-- new post -->
+        <p class="date">13-03-2024</p>
+
+        <div id="post3">
+            <h3 class="title">
+                <br>
+                Functions in SuperCollider<br>
+                ---------------------------
+                <br>
+            </h3>
+
+            <p>
+                In this post I want to have a brief look at functions and how you can use them in SC. Functions are a
+                central concept in computer programming. A function can be defined as a callable unit that has a
+                well-defined behavior and can be invoked by other software units to exhibit that behavior. Usually this
+                means that a value goes into the function, a behavior or series of behaviors is executed inside the
+                function and a new value is returned. For instance if we want to write a function that subtracts half of
+                a given number. We would have to make the following calculation:
+            </p>
+
+            <p class="code">
+
+                y = x - x/2
+
+            <p>
+            <p>
+                In SuperCollider we can write this as a reusable function as follows:
+            </p>
+
+            <p class="code">
+                a = {arg x; x = x - (x/2)}
+            </p>
+
+            <p>
+                We now have a function stored in a variable (a) that takes as an argument x and performs the necessary
+                calculation. This means that we can easily perform our calculation for different numbers.
+                We can use the .value method to evaluate our function, this method can also be written as value(a,4).
+                For example:
+            </p>
+
+            <p class="code">
+                a.value(4)
+                a.value(8)
+            </p>
+
+            <p>
+                <br>
+                Some things to note:
+                <br>
+            <ul style="list-style-type: square; margin-left: 5%">
+                <li>
+                    In SC functions are surrounded with brackets: {} </li>
+                <li>
+                    We store a function in a variable, in this case we used the letter a. In SC all the letters a-z are
+                    reserved as variables (remember that the server is already stored in variable s so that one is
+                    off-limits).
+                    These can be used anywhere in the program and are consider global variables. If you want to create
+                    your own variable you can do this using the tilde: eg: ~myOwnVariable.
+                    These are refered to as environment variables and can also be used anywhere in the program.
+                </li>
+                <li> Lastly the order of operations in SC is executed from left to right in all cases, there is no
+                    operator precedence. So we need the parentheses to get the correct result in our case.
+                </li>
+            </ul>
+            <p>
+                Now how can we use this to make sounds?
+
+
+                In the previous post we wrote the following code to send our SinOsc to bus 7.
+
+            </p>
+            <p class="code">
+
+                (
+                b = {var osc;
+                osc = SinOsc.ar(220);
+                Out.ar(7,osc)})
+            </p>
+
+            <p>
+                Now we can see that it is a function. Similarly to our previous example lets add a variable that we can
+                use to modify our sound and send it to bus 0 an 1.
+            </p>
+
+            <p class="code">
+                (b = {arg freq; <br>
+                var osc; <br>
+                osc = SinOsc.ar(freq); <br>
+                Out.ar([0,1],osc)}) <br> </p>
+
+            <p>
+                Now we can use our function to play this sine wave at different frequencies:
+            </p>
+
+            <p class="code">
+                b.play(args: ["freq", 110]) <br>
+                b.play(args: ["freq", 220]) <br>
+                b.play(args: ["freq", 240.43]) <br>
+            <p>
+
+            <p>
+                To make it a bit more interesting lets add another variable called <em> control</em> which outputs a
+                control rate signal. This signal can then
+                be used to modify the amplitude of the signal.
+            </p>
+
+            <p class="code">
+
+                (
+                b = {arg freq; <br>
+                var control; <br>
+                var osc; <br>
+                control = SinOsc.kr(4); <br>
+                osc = SinOsc.ar(freq, 0, control); <br>
+                Out.ar([0,1],osc)} <br>
+                )</p>
+
+            <p>
+                And run it with a few different frequencies:
+            </p>
+
+            <p class="code">
+
+                b.play(args: ["freq", 140.23]) <br>
+                b.play(args: ["freq", 110]) <br>
+                b.play(args: ["freq", 220]) <br>
+                b.play(args: ["freq", 240.43]) <br>
+            <p>
+        </div>
+
+        <p class="date">04-12-2023</p>
+
+        <div id="post2">
+            <h3 class="title">
+                <br>
+                Setting up SuperCollider (2)<br>
+                ---------------------------
+                <br>
+                <br>
+            </h3>
+
+
+            <p> If you want to use SuperCollider it might be interesting to incorporate
+                external instruments or use send/return effects. To do this you will need an external audio interface.
+                I’m using the Native Instruments Komplete Audio 6 MK2.
+                To see which output devices are available for SuperCollider run the following code:
+
+            </p>
+
+            <p class="code">
+                ServerOptions.outDevices; // output devices
+            </p>
+
+            <p>
+                Based on this information you can set one of these as the default device. The previous post
+                discussed routing your audio internally into your DAW using software such as Soundflower. Now we
+                are going to combine this with our external audio interface to make an make aggregate device.
+                For MacOs users this is pretty straightforward (Windows user can try using <a
+                    href="https://asio4all.org/">ASIO4ALL</a>)
+            </p>
+
+            <p>
+                Once you’ve set up the aggregate device you want to run the above command again,
                 if all is well it should show up in the list of possible output devices.
                 Next use the following code to set it as a the default device.
             </p>
 
-        <p class="code">
-            Server.default.options.outDevice_("[insert the name of your aggregate device here]");
-        </p>
+            <p class="code">
+                Server.default.options.outDevice_("[insert the name of your aggregate device here]");
+            </p>
 
             <p>
 
-            My aggregate device now consists of 6
+                My aggregate device now consists of 6
                 channels on my external audio interface and 2 additional channels,
                 these are the channels that will contain the SuperCollider audio. However,
                 we do have to make sure that the audio from SuperCollider is being sent to channel 7/8.
@@ -279,143 +535,159 @@ b.play(args: ["freq", 240.43]) <br>
             </p>
 
             <p class="code">
-            s.options.numOutputBusChannels(8);
+                s.options.numOutputBusChannels(8);
             </p>
 
 
             <p>
-            You can check the levels of the different busses by running:
+                You can check the levels of the different busses by running:
             </p>
 
             <p class="code">
-            s.meter
+                s.meter
             </p>
 
             <p>
-            Let’s run the simple sine oscillator with two busses that we made in the previous post. Notice that the sound will not be sent through to your DAW as it is sent to busses 1 & 2. in order to write a signal to another bus we have to use the Out() class which has the following methods:
-
-            </p>
-
-            <p class="code">
-            Out.ar(bus, channelsArray) <br>
-            Out.kr(bus, channelsArray)
-            </p>
-
-            <p>
-
-            You can see that you can either send audio rate (ar) or control rate (kr). 
-                In this case we want to send out our sine wave audio rate. We can do this by creating a function (more on functions later) for our
-                oscillator and setting our bus to 6 and 7 with an array.  
+                Let’s run the simple sine oscillator with two busses that we made in the previous post. Notice that the
+                sound will not be sent through to your DAW as it is sent to busses 1 & 2. in order to write a signal to
+                another bus we have to use the Out() class which has the following methods:
 
             </p>
 
             <p class="code">
-            (<br>
-            (
-                b = {var osc; <br> 
-                    osc = SinOsc.ar(220); <br> 
-                    Out.ar([6,7],osc)})<br>
-
+                Out.ar(bus, channelsArray) <br>
+                Out.kr(bus, channelsArray)
             </p>
-
-            <p> 
-
-            Notice that we are setting it to 6 and 7 but it enters your DAW in input 7/8 because in SC we start counting from 0 instead of 1. 
-            </p>
-
- </div>
-
-
-            <div id="post1">
-
-            <p class="date">05-10-2023</p>
-
-<h3 class="title">
-   <br>
-Setting up SuperCollider (1)<br>
----------------------------
-
-    <br>
-</h3>
 
             <p>
-SuperCollider is based on a client/server architecture. In short we have an audio server (which makes the sound) that we are able to communicate with  using a client.
-            The server is also called scsynth and the client as sclang, which functions as both the client and the interpreter.
-            To execute commands we type our code in the high-level SuperColliding language which is then translated and sent to the server.
-    That’s why, when you start the SuperCollider environment you will see this at the bottom:</p>
-    <img src="images/SC1.png">
-<p>
-Meaning that your Interpreter (or client) is Active but you still need to start (or boot) the server. You can do this using the following command.
-</p>
 
-<p class="code">
-    s.boot
+                You can see that you can either send audio rate (ar) or control rate (kr).
+                In this case we want to send out our sine wave audio rate. We can do this by creating a function (more
+                on functions later) for our
+                oscillator and setting our bus to 6 and 7 with an array.
 
-</p>
+            </p>
 
-<p>
+            <p class="code">
+                (<br>
+                (
+                b = {var osc; <br>
+                osc = SinOsc.ar(220); <br>
+                Out.ar([6,7],osc)})<br>
 
-    To run the code: put your text cursor at the end of the line of code you want to run and pres shift + enter. There is one default server stored in the interpreter variable s.
-    The server object has a number of methods which can be accessed by writing a period (.) followed by the name of the method, e.g. server.boot. For more
-    information about the server class have a look at the <a href="https://doc.sccode.org/Classes/Server.html"> documentation</a>. If you want to stop the server you can use the quit method by writing s.quit.
-    Once you’ve booted the server, the next thing you want to do is set a hard limit for the output.
-    This is not built into SuperCollider but can be installed as an additional package
-    or a Quark. You can find more information about how to use Quarks over here:
-   <a href="https://doc.sccode.org/Guides/UsingQuarks.html"> Using Quarks</a>. The Quark you need is called Safety. I usually set the limiter at 0.5 but you can find your own preference.
+            </p>
 
+            <p>
 
-</p>
+                Notice that we are setting it to 6 and 7 but it enters your DAW in input 7/8 because in SC we start
+                counting from 0 instead of 1.
+            </p>
 
-<p class="code">
-Safety.setLimit(0.5)
-</p>
-
-<p>
-
-Instead of just running SuperCollider on its own it can be interesting to run it into your DAW of choice. You can route
-    your audio
-    into another device internally using open source software such as Soundflower for Mac OS.
-    You can check if it is working by running a simple sine oscillator at 220 hertz as follows:
-    (before playing the sound turn your volume way down and then gradually turn it back up)
-</p>
-
-
-<p class="code">
-
-{SinOsc.ar(220)}.play
-</p>
-
-<p>
-
-To stop the sound press shift +command + . (period). You've probably noticed that the sound is just coming from one speaker.
-    Let’s make it a bit more interesting by expanding it to two channels by adding an array:
-
-
-</p>
-<p class="code">
-
-    {SinOsc.ar([220, 220]}.play
-
-</p>
-
-
-<p>
-So what we've got so far is
-
-
-<p class="code">
-    s.boot //booting the server
-<br>
-    Safety.setLimit(0.5) //set a limit of the output
-<br>
-    {SinOsc.ar([220, 220]}.play //play a sine oscillator 220 Hz on channel 0 and 1
-</p>
-
-
-
-            </div>
         </div>
 
 
+        <div id="post1">
+
+            <p class="date">05-10-2023</p>
+
+            <h3 class="title">
+                <br>
+                Setting up SuperCollider (1)<br>
+                ---------------------------
+
+                <br>
+            </h3>
+
+            <p>
+                SuperCollider is based on a client/server architecture. In short we have an audio server (which makes
+                the sound) that we are able to communicate with using a client.
+                The server is also called scsynth and the client as sclang, which functions as both the client and the
+                interpreter.
+                To execute commands we type our code in the high-level SuperColliding language which is then translated
+                and sent to the server.
+                That’s why, when you start the SuperCollider environment you will see this at the bottom:</p>
+            <img src="images/SC1.png">
+            <p>
+                Meaning that your Interpreter (or client) is Active but you still need to start (or boot) the server.
+                You can do this using the following command.
+            </p>
+
+            <p class="code">
+                s.boot
+
+            </p>
+
+            <p>
+
+                To run the code: put your text cursor at the end of the line of code you want to run and pres shift +
+                enter. There is one default server stored in the interpreter variable s.
+                The server object has a number of methods which can be accessed by writing a period (.) followed by the
+                name of the method, e.g. server.boot. For more
+                information about the server class have a look at the <a
+                    href="https://doc.sccode.org/Classes/Server.html"> documentation</a>. If you want to stop the server
+                you can use the quit method by writing s.quit.
+                Once you’ve booted the server, the next thing you want to do is set a hard limit for the output.
+                This is not built into SuperCollider but can be installed as an additional package
+                or a Quark. You can find more information about how to use Quarks over here:
+                <a href="https://doc.sccode.org/Guides/UsingQuarks.html"> Using Quarks</a>. The Quark you need is called
+                Safety. I usually set the limiter at 0.5 but you can find your own preference.
+
+
+            </p>
+
+            <p class="code">
+                Safety.setLimit(0.5)
+            </p>
+
+            <p>
+
+                Instead of just running SuperCollider on its own it can be interesting to run it into your DAW of
+                choice. You can route
+                your audio
+                into another device internally using open source software such as Soundflower for Mac OS.
+                You can check if it is working by running a simple sine oscillator at 220 hertz as follows:
+                (before playing the sound turn your volume way down and then gradually turn it back up)
+            </p>
+
+
+            <p class="code">
+
+                {SinOsc.ar(220)}.play
+            </p>
+
+            <p>
+
+                To stop the sound press shift +command + . (period). You've probably noticed that the sound is just
+                coming from one speaker.
+                Let’s make it a bit more interesting by expanding it to two channels by adding an array:
+
+
+            </p>
+            <p class="code">
+
+                {SinOsc.ar([220, 220]}.play
+
+            </p>
+
+
+            <p>
+                So what we've got so far is
+
+
+            <p class="code">
+                s.boot //booting the server
+                <br>
+                Safety.setLimit(0.5) //set a limit of the output
+                <br>
+                {SinOsc.ar([220, 220]}.play //play a sine oscillator 220 Hz on channel 0 and 1
+            </p>
+
+
+
+        </div>
+    </div>
+
+
 </body>
+
 </html>
